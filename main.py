@@ -1,30 +1,12 @@
 import sys
+import os
 from geometry import *
+from application import Application
 
 
 def main():
-
-    shapes = ShapeList()  # object containing all shapes added by the user
-    while True:
-        # TODO: implement user interaction here. You can change the code below
-        option = input("Select an option: ")
-        if option == "1":
-            # Add new shape
-            pass
-        elif option == "2":
-            # Show all shapes
-            pass
-        elif option == "3":
-            # Show shape with the largest perimeter
-            pass
-        elif option == "4":
-            # Show shape with the largest area
-            pass
-        elif option == "5":
-            # Show formulas
-            pass
-        elif option == "0":
-            sys.exit()
+    app = Application()
+    app.run()
 
 if __name__ == "__main__":
     main()
