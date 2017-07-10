@@ -13,37 +13,102 @@ class Application:
                '  (5) Show formulas',
                '  (0) Exit program']
 
+    shape_types = ['(1) Circle',
+                   '(2) Triangle',
+                   '(3) Equilateral triangle',
+                   '(4) Rectangle',
+                   '(5) Square Class',
+                   '(6) Regular pentagon']
+
+    SHAPES_DICTIONARY = {'1': Circle,
+                         '2': Triangle,
+                         '3': EquilateralTriangle,
+                         '4': Rectangle,
+                         '5': Square,
+                         '6': RegularPentagon}
+
     def __init__(self):
         self.is_running = True
 
     def run(self):
-        shapes = ShapeList()  # object containing all shapes added by the user
+        shapes_list = ShapeList()  # object containing all shapes added by the user
 
         while self.is_running:
             # os.system('clear')
-            self.display_menu()
-            option = self.get_input('Enter choice of menu options: ')
+            Application.print_menu(self.options)
+            option = Application.get_input('Enter choice of menu options: ')
 
             if option == '1':
-                pass
+                print('Which shape you would like to add:')
+                self.print_menu(self.shape_types)
+                option = input('\nSelect a shape: ')
+
+                try:
+                    if option == '1':
+                        r = float(input("Enter a radious: "))
+                        shapes_list.add_shape(Circle(r))
+
+                    elif option == '2':
+                        a = float(input('Enter size of first side: '))
+                        b = float(input('Enter size of second side: '))
+                        c = float(input('Enter size of third side: '))
+                        shapes_list.add_shape(Triangle(a, b, c))
+
+                    elif option == '3':
+                        a = float(input('Enter size of sides: '))
+                        shapes_list.add_shape(EquilateralTriangle(a))
+
+                    elif option == '4':
+                        a = float(input('Enter size of first side: '))
+                        b = float(input('Enter size of second side: '))
+                        shapes_list.add_shape(Rectangle(a, b))
+
+                    elif option == '5':
+                        a = float(input('Enter size of sides: '))
+                        shapes_list.add_shape(Square(a))
+
+                    elif option == '6':
+                        a = float(input('Enter size of sides: '))
+                        shapes_list.add_shape(RegularPentagon(a))
+
+                    else:
+                        input('\nWrong operation number. Press Enter to continue')
+
+                except ValueError:
+                    print('Wrong option.')
 
             elif option == '2':
-                pass
+                print(shapes_list.get_shapes_table())
 
             elif option == '3':
-                pass
+                output_value = shapes_list.get_largest_shape_by_perimeter()
+                print(output_value.__class__.__name__)
 
             elif option == '4':
-                pass
+                output_value = shapes_list.get_largest_shape_by_area()
+                print(output_value.__class__.__name__)
 
             elif option == '5':
-                pass
+                print('\nChoose shape to see formulas:')
+                self.print_menu(self.shape_types)
+                option = input('\nSelect a shape: ')
+
+                if option in self.SHAPES_DICTIONARY.keys():
+                    shape_name = self.SHAPES_DICTIONARY[option].__name__
+                    area_formula = self.SHAPES_DICTIONARY[option].AREA
+                    perimeter_formula = self.SHAPES_DICTIONARY[option].PERIMETER
+                    print('\n{}\nArea formula = {}\nPerimeter formula = {}\n'.format(shape_name, area_formula, perimeter_formula))
 
             elif option == '0':
                 self.is_running = False
 
-    def get_input(self, message):
+            else:
+                print('==> There is no such an option. <==')
+
+    @staticmethod
+    def get_input(message):
         return input(message)
 
-    def display_menu(self):
-        print('\n'.join(self.options))
+    @staticmethod
+    def print_menu(menu_options):
+        print('\n'.join(menu_options))
