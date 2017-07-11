@@ -325,21 +325,21 @@ class ShapeList:
 
         final_table = ''
         table.insert(0, title_list)
-        how_wide = [0 for i in range(len(title_list))]
+        width = [0 for i in range(len(title_list))]
         iterator = [i for i in range(len(title_list))]
 
         for row in table:
             for element, i in zip(row, iterator):
-                if len(str(element)) > how_wide[i]:
-                    how_wide[i] = len(str(element))
+                if len(str(element)) > width[i]:
+                    width[i] = len(str(element))
 
         row_length = len(title_list) + 1
         rows_separator = "|"
 
         for i in iterator:
-            how_wide[i] += 4
-            row_length += how_wide[i]
-            rows_separator += "-" * how_wide[i] + "|"
+            width[i] += 4
+            row_length += width[i]
+            rows_separator += "-" * width[i] + "|"
         table_top = "/" + "-" * (row_length - 2) + "\\"
         table_bottom = "\\" + "-" * (row_length - 2) + "/"
 
@@ -349,7 +349,7 @@ class ShapeList:
         for row in table:
             to_print = "|"
 
-            for element, width in zip(row, how_wide):
+            for element, width in zip(row, width):
                 to_print += "{}".format(element).center(width) + "|"
             final_table += to_print + '\n'
 
@@ -367,7 +367,6 @@ class ShapeList:
         Returns:
             Object with the largest perimeter.
         '''
-
         dictionary = {}
 
         for shape in self.shapes:
