@@ -45,7 +45,7 @@ class Application:
 
                 try:
                     if option == '1':
-                        r = float(input("Enter a radious: "))
+                        r = float(input("Enter a radius: "))
                         shapes_list.add_shape(Circle(r))
 
                     elif option == '2':
