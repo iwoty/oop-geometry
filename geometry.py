@@ -74,13 +74,12 @@ class Circle(Shape):
 
     def __init__(self, r):
         """
-        Constructs circle object
+        Creates object of circle.
 
         Attributes:
             r (float): radius
 
-        Raises:
-            ValueError: If r parameter is below 0.
+        Raises ValueError if r parameter is below 0.
         """
         if r < 0:
             raise ValueError('Radius cannot be lower than 0.')
@@ -89,26 +88,26 @@ class Circle(Shape):
 
     def get_area(self):
         """
-        Calculates shape's area.
+        Calculate area.
 
         Returns:
-            float: area of the shape
+            (float): area of the shape
         """
         return math.pi * self.r ** 2
 
     def get_perimeter(self):
         """
-        Calculates circle perimeter.
+        Calculates perimeter.
 
         Returns:
-            float: perimeter of the circle.
+            (float): perimeter of the circle.
         """
         return 2 * math.pi * self.r
 
 
 class Triangle(Shape):
 
-    AREA = '\u221A(s(s-a)(s-b)(s-c))'
+    AREA = '((s(s-a)(s-b)(s-c)))^(1/2)'
     PERIMETER = 'a + b + c'
 
     def __init__(self, a, b, c):
