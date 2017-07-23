@@ -39,19 +39,19 @@ class Application:
             option = Application.get_input('Enter choice of menu options: ')
 
             if option == '1':
-                print('Which shape you would like to add:')
+                print('Which shape would you like to add:')
                 self.print_menu(self.shape_types)
                 option = input('\nSelect a shape: ')
 
                 try:
                     if option == '1':
-                        r = float(input("Enter a radius: "))
+                        r = float(input("Enter radius: "))
                         shapes_list.add_shape(Circle(r))
 
                     elif option == '2':
-                        a = float(input('Enter size of first side: '))
-                        b = float(input('Enter size of second side: '))
-                        c = float(input('Enter size of third side: '))
+                        a = float(input('Enter size of 1st side: '))
+                        b = float(input('Enter size of 2nd side: '))
+                        c = float(input('Enter size of 3rd side: '))
                         shapes_list.add_shape(Triangle(a, b, c))
 
                     elif option == '3':
@@ -59,8 +59,8 @@ class Application:
                         shapes_list.add_shape(EquilateralTriangle(a))
 
                     elif option == '4':
-                        a = float(input('Enter size of first side: '))
-                        b = float(input('Enter size of second side: '))
+                        a = float(input('Enter size of 1st side: '))
+                        b = float(input('Enter size of 2nd side: '))
                         shapes_list.add_shape(Rectangle(a, b))
 
                     elif option == '5':
@@ -72,7 +72,7 @@ class Application:
                         shapes_list.add_shape(RegularPentagon(a))
 
                     else:
-                        input('\nWrong operation number. Press Enter to continue')
+                        input('\nWrong number. Press Enter to continue')
 
                 except ValueError:
                     print('Wrong option.')
@@ -96,8 +96,8 @@ class Application:
                 if option in self.SHAPES_DICTIONARY.keys():
                     shape_name = self.SHAPES_DICTIONARY[option].__name__
                     area_formula = self.SHAPES_DICTIONARY[option].AREA
-                    perimeter_formula = self.SHAPES_DICTIONARY[option].PERIMETER
-                    print('\n{}\nArea formula = {}\nPerimeter formula = {}\n'.format(shape_name, area_formula, perimeter_formula))
+                    perim_formula = self.SHAPES_DICTIONARY[option].PERIMETER
+                    print('\n{}\nArea formula = {}\nPerimeter formula = {}\n'.format(shape_name, area_formula, perime_formula))
 
             elif option == '0':
                 self.is_running = False

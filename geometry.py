@@ -306,10 +306,11 @@ class ShapeList:
         """Method that returns table with data from objects in shapes list
 
         Returns:
-            final_table (str)
+            (str) of table final look
         """
-        title_list = ['idx', 'Class', 'Perimeter', 'Formula', 'Area', 'Formula']
-        table = []
+        table = [['idx', 'Class', 'Perimeter', 'Formula', 'Area', 'Formula']]
+        final_table = ''
+        COLUMN_WIDTH = 15
         index = 0
 
         for element in self.shapes:
@@ -319,45 +320,15 @@ class ShapeList:
                      element.PERIMETER,
                      round(element.get_area(), 2),
                      element.AREA]
-            index += 1
             table.append(lista)
+            index += 1
 
-        final_table = ''
-        table.insert(0, title_list)
-        width = [0 for i in range(len(title_list))]
-        iterator = [i for i in range(len(title_list))]
-
-        for row in table:
-            for element, i in zip(row, iterator):
-                if len(str(element)) > width[i]:
-                    width[i] = len(str(element))
-
-        row_length = len(title_list) + 1
-        rows_separator = "|"
-
-        for i in iterator:
-            width[i] += 4
-            row_length += width[i]
-            rows_separator += "-" * width[i] + "|"
-        table_top = "/" + "-" * (row_length - 2) + "\\"
-        table_bottom = "\\" + "-" * (row_length - 2) + "/"
-
-        final_table += table_top + '\n'
-
-        counter = 1
-        for row in table:
-            to_print = "|"
-
-            for element, width in zip(row, width):
-                to_print += "{}".format(element).center(width) + "|"
-            final_table += to_print + '\n'
-
-            if counter < len(table):
-                final_table += rows_separator + '\n'
-
-            else:
-                final_table += table_bottom + '\n'
-            counter += 1
+        for record in table:
+            for single_data in record:
+                final_table += '|'
+                final_table += '{}'.format(''.join(str(single_data))).center(COLUMN_WIDTH)
+                final_table += '|'
+            final_table += '\n'
 
         return final_table
 
